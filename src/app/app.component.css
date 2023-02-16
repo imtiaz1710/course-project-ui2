@@ -1,7 +1,41 @@
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
+} */
+/* 
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .content {
+    flex: 1;
+  }
+} */
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  /* background-color: #f2f2f2; */
+  padding: 16px;
+}
+
+.main-content {
+  flex: 1;
+  overflow: auto; /* add this to enable scrolling */
+  padding: 16px;
 }

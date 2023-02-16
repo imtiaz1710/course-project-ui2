@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreatePostComponent } from '../create-post/create-post.component';
@@ -9,7 +9,6 @@ import { CreatePostComponent } from '../create-post/create-post.component';
   styleUrls: ['./topic-details.component.css']
 })
 export class TopicDetailsComponent {
-  //topic: any;
   posts: any[] = [];
 
   constructor(private route: ActivatedRoute, private modalService: NgbModal, ) { }
@@ -26,7 +25,10 @@ export class TopicDetailsComponent {
   }
 
   addComment(post: any, comment: string) {
-    post.comments.push(comment);
+    let x =<HTMLInputElement>document.getElementById(`comment${post.id}`);
+    post.comments.push(x.value);
+    x.value = '';
+
   }
 
   openCreatePostModal() {
