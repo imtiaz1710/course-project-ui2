@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create Post</h4>
+    <button type="button" class="close" (click)="close()">
+        <span>&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #createPostForm="ngForm">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" [(ngModel)]="header" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" [(ngModel)]="description"
+                required></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="savePost()">Save</button>
+</div>

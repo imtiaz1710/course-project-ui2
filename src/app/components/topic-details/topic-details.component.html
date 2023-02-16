@@ -1,0 +1,16 @@
+<!-- <h2>{{ post.name }}</h2>
+<p>{{ post.description }}</p> -->
+
+<h3>Posts</h3>
+<ul>
+  <li *ngFor="let post of posts">
+    <h4>{{ post.header }}</h4>
+    <p>{{ post.description }}</p>
+    <button (click)="addComment(post, 'New Comment')">Add Comment</button>
+    <ul>
+      <li *ngFor="let comment of post.comments">{{ comment }}</li>
+    </ul>
+  </li>
+</ul>
+
+<button (click)="openCreatePostModal()">Create Post</button>

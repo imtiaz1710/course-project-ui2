@@ -1,0 +1,26 @@
+.card {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  background-color: #36c5f0;
+  border-color: #36c5f0;
+}
+
+.btn-primary:hover {
+  background-color: #2d9dd8;
+  border-color: #2d9dd8;
+}

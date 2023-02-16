@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <div class="logo">Your App Name</div>
+  <div class="menu">
+    <ul>
+      <li *ngFor="let topic of topics">
+        <a routerLink="/topics/{{ topic.id }}">{{ topic.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
