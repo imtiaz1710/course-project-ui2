@@ -7,8 +7,10 @@ import { BodyComponent } from './components/body/body.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TopicDetailsComponent } from './components/topic-details/topic-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CreatePostComponent } from './components/create-post/create-post.component';
-import { FormsModule } from '@angular/forms';
+import { CreateRoomComponent } from './components/create-room/create-room.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthComponent } from './components/auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,14 +19,17 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     BodyComponent,
     TopicDetailsComponent,
-    CreatePostComponent
+    CreateRoomComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

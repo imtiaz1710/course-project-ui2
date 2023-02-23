@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreatePostComponent } from '../create-post/create-post.component';
+import { CreateRoomComponent } from '../create-room/create-room.component';
 
 @Component({
   selector: 'app-topic-details',
@@ -10,20 +10,17 @@ import { CreatePostComponent } from '../create-post/create-post.component';
 })
 export class TopicDetailsComponent {
   posts: any[] = [];
-
+  topic: any;
   constructor(private route: ActivatedRoute, private modalService: NgbModal, ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      // const id = parseInt(params.get('id')?.toString());
       // this.topic = { id: id, name: 'Python' };
       this.posts = [
-        { id: 1, header: 'First Post', description: 'This is the first post', comments: [], showComment: false },
-        { id: 2, header: 'Second Post', description: 'This is the second post', comments: [], showComment: false },
-        { id: 3, header: 'First Post', description: 'This is the first post', comments: [], showComment: false },
-        { id: 4, header: 'Second Post', description: 'This is the second post', comments: [], showComment: false }
+        { id: 1, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
+        { id: 2, name: 'Second Post', description: 'This is the second post', comments: [], showComment: false },
+        { id: 3, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
+        { id: 4, name: 'Second Post', description: 'This is the second post', comments: [], showComment: false }
       ];
-    });
   }
 
   showCommentToggle(post: any){
@@ -37,7 +34,8 @@ export class TopicDetailsComponent {
   }
 
   openCreatePostModal() {
-    const modalRef = this.modalService.open(CreatePostComponent);
-    modalRef.componentInstance.topic = this.posts;
+    this.topic = this.route.snapshot.paramMap.get('id');
+    const modalRef = this.modalService.open(CreateRoomComponent);
+    modalRef.componentInstance.topic = this.topic;
   }
 }

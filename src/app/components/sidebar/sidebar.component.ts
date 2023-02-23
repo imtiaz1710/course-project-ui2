@@ -9,6 +9,9 @@ export class SidebarComponent {
   topics = [
     { id: 1, name: 'Python' },
     { id: 2, name: 'Java' },
-    { id: 3, name: 'C#' }
+    { id: 3, name: 'CSharp' },
+    { id: 3, name: 'Django' },
+    { id: 3, name: 'JavaScript' },
+    { id: 3, name: 'Perl' },
   ];
 }
