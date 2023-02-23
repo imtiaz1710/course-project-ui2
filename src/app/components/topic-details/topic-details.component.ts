@@ -18,17 +18,22 @@ export class TopicDetailsComponent {
       // const id = parseInt(params.get('id')?.toString());
       // this.topic = { id: id, name: 'Python' };
       this.posts = [
-        { id: 1, header: 'First Post', description: 'This is the first post', comments: [] },
-        { id: 2, header: 'Second Post', description: 'This is the second post', comments: [] }
+        { id: 1, header: 'First Post', description: 'This is the first post', comments: [], showComment: false },
+        { id: 2, header: 'Second Post', description: 'This is the second post', comments: [], showComment: false },
+        { id: 3, header: 'First Post', description: 'This is the first post', comments: [], showComment: false },
+        { id: 4, header: 'Second Post', description: 'This is the second post', comments: [], showComment: false }
       ];
     });
+  }
+
+  showCommentToggle(post: any){
+    post.showComment = !post.showComment;
   }
 
   addComment(post: any, comment: string) {
     let x =<HTMLInputElement>document.getElementById(`comment${post.id}`);
     post.comments.push(x.value);
     x.value = '';
-
   }
 
   openCreatePostModal() {

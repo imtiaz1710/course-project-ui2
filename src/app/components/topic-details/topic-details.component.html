@@ -29,42 +29,43 @@
         <div class="post-footer">
           <!-- <div class="post-likes">20 likes</div> -->
           <div class="post-comment-count">5 comments</div>
-          <button class="post-comment-button">Add Comment</button>
+          <button class="post-comment-button" (click)="showCommentToggle(post)">Show Comments</button>
         </div>
         <div>
           <!-- <div class="comment-header">
             <div class="comment-title">Comments</div>
             <div class="comment-count">5 comments</div>
           </div> -->
-          <form class="comment-form">
-            <textarea id="comment{{post.id}}" placeholder="Write a comment"></textarea>
-            <button (click)="addComment(post, 'New Comment')" type="submit">Comment</button>
-          </form>
-          <div *ngFor="let comment of post.comments" class="comment">
-            <div class="comment-avatar">
-              <img src="https://via.placeholder.com/32" alt="avatar">
-            </div>
-            <div class="comment-content">
-              <div class="comment-header">
-                <div class="comment-author">John Doe</div>
-                <div class="comment-date">March 2, 2023</div>
+          <div *ngIf="post.showComment">
+            <form class="comment-form">
+              <textarea id="comment{{post.id}}" placeholder="Write a comment"></textarea>
+              <button (click)="addComment(post, 'New Comment')" type="submit" style="margin-top: 1rem;">Comment</button>
+            </form>
+            <div *ngFor="let comment of post.comments" class="comment">
+              <div class="comment-avatar">
+                <img src="https://via.placeholder.com/32" alt="avatar">
               </div>
-              <div class="comment-text">
-                <p>{{comment}}</p>
-              </div>
-              <div class="comment-actions">
-                <div class="comment-action">
-                  <i class="fa fa-thumbs-up"></i>Like
+              <div class="comment-content">
+                <div class="comment-header">
+                  <div class="comment-author">John Doe</div>
+                  <div class="comment-date">March 2, 2023</div>
                 </div>
-                <div class="comment-action">
-                  <i class="fa fa-comment"></i>Reply
+                <div class="comment-text">
+                  <p>{{comment}}</p>
+                </div>
+                <div class="comment-actions">
+                  <div class="comment-action">
+                    <i class="fa fa-thumbs-up"></i>Like
+                  </div>
+                  <div class="comment-action">
+                    <i class="fa fa-comment"></i>Reply
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
