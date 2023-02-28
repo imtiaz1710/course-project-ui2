@@ -55,12 +55,10 @@ export class AuthComponent implements OnInit {
 
     this.authService.register(email, password, confirmPassword).subscribe(
       resData => {
-        debugger
         this.isLoading = false;
         this.router.navigate(['/']);
       },
       errorMessage => {
-        debugger
         this.error = [...errorMessage?.error?.password, ...errorMessage?.error?.email].toString();
         this.isLoading = false;
       }

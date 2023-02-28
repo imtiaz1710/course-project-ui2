@@ -5,7 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
+
 export class SidebarComponent {
+  public selectedTopic: string = 'all';
+
   topics = [
     { id: 1, name: 'Python' },
     { id: 2, name: 'Java' },
@@ -14,4 +17,8 @@ export class SidebarComponent {
     { id: 3, name: 'JavaScript' },
     { id: 3, name: 'Perl' },
   ];
+
+  selectTopic(topic: string) {
+    this.selectedTopic = topic;
+  }  
 }

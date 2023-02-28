@@ -24,9 +24,7 @@ export class CreateRoomComponent implements OnInit {
     //.post.posts.push(newPost);
     this.roomService.createRoom(this.topic, this.name, this.description).subscribe({
       next: (res) => {
-        debugger
       }, error: (err) => { 
-        debugger
       }
     })
     // close modal and reset input fields

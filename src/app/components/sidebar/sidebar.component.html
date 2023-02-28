@@ -2,9 +2,12 @@
   <div class="logo">Your App Name</div>
   <div class="menu">
     <ul>
-      <li *ngFor="let topic of topics">
-        <a routerLink="/topics/{{ topic.name }}">{{ topic.name }}</a>
-      </li>
+      <li><a [ngClass]="{'selected': selectedTopic === 'all' }" routerLink="/" (click)="selectTopic('all')">All</a></li>
+      <div *ngFor="let topic of topics">
+        <li>
+          <a [ngClass]="{'selected': selectedTopic === topic?.name }" routerLink="/topics/{{ topic.name }}" (click)="selectTopic(topic?.name)">{{ topic?.name }}</a>
+        </li>
+      </div>
     </ul>
   </div>
 </div>
