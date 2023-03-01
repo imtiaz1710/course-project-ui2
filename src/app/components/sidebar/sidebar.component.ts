@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 
 export class SidebarComponent {
   public selectedTopic: string = 'all';
+
+  constructor(private route: ActivatedRoute, private router: Router){
+
+  }
 
   topics = [
     { id: 1, name: 'Python' },
@@ -19,6 +24,13 @@ export class SidebarComponent {
   ];
 
   selectTopic(topic: string) {
+    if(topic === 'all'){
+      this.router.navigate(['/']);
+    }
+    else{
+      this.router.navigate(['/topics/' + topic]);
+    }
+    
     this.selectedTopic = topic;
   }  
 }

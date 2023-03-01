@@ -22,4 +22,17 @@ export class RoomService {
     const body = { topic, name, description };
     return this.http.post(url, body, { headers });
   }
+
+  getRooms(): Observable<any>{
+    const authToken = localStorage.getItem(this.authTokenKey);
+
+    const url = `${this.baseUrl}/rooms`;
+    return this.http.get(url);
+  }
+
+  getRoomsByTopic(topic: string): Observable<any>{
+    const authToken = localStorage.getItem(this.authTokenKey);
+    const url = `${this.baseUrl}/search?topic=${topic}`;
+    return this.http.get(url);
+  }
 }
