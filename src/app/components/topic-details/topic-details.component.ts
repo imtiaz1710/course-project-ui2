@@ -1,6 +1,8 @@
+import { NotExpr } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CurrentTopicService } from 'src/app/services/current-topic.service';
 import { RoomService } from 'src/app/services/room.service';
 import { CreateRoomComponent } from '../create-room/create-room.component';
 
@@ -13,19 +15,24 @@ export class TopicDetailsComponent implements OnInit {
   posts: any[] = [];
   topic: any;
   id: string;
-  constructor(private route: ActivatedRoute, private modalService: NgbModal, private roomAService: RoomService) { }
+  constructor(private route: ActivatedRoute, private modalService: NgbModal, 
+    private roomAService: RoomService, private currentTopicService: CurrentTopicService) { }
 
   ngOnInit() {
-    debugger
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.currentTopicService.currentTopic$.next(this.id);
+      
+      if(this.id){
+        this.getRoomsByTopic(this.id);
+      }
+      else{
+        this.getAllRooms();
+      }
+   });
+   
     // this.topic = { id: id, name: 'Python' };
-    this.id = this.route.snapshot.paramMap.get('id');
-debugger
-    if(this.id){
-      this.getRoomsByTopic(this.id);
-    }
-    else{
-      this.getAllRooms();
-    }
+    //this.id = this.route.snapshot.paramMap.get('id');
 
     // this.posts = [
     //   { id: 1, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
@@ -64,6 +71,9 @@ debugger
   openCreatePostModal() {
     this.topic = this.route.snapshot.paramMap.get('id');
     const modalRef = this.modalService.open(CreateRoomComponent);
+    modalRef.result.then((response) => {
+      this.getRoomsByTopic(this.id);
+    })
     modalRef.componentInstance.topic = this.topic;
   }
 }

@@ -13,7 +13,7 @@
   </li>
 </ul> -->
 
-<button class="add-post-btn" (click)="openCreatePostModal()">Create Post</button>
+<button *ngIf="!!id" class="add-post-btn" (click)="openCreatePostModal()">Create Post</button>
 
 <div class="container">
   <div class="row">

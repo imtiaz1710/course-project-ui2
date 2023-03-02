@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoomService } from 'src/app/services/room.service';
 
@@ -24,16 +24,18 @@ export class CreateRoomComponent implements OnInit {
     //.post.posts.push(newPost);
     this.roomService.createRoom(this.topic, this.name, this.description).subscribe({
       next: (res) => {
+        this.activeModal.close();
       }, error: (err) => { 
+        this.activeModal.close();
       }
     })
     // close modal and reset input fields
-    this.activeModal.close();
+    
     this.name = '';
     this.description = '';
   }
 
-  close(){
-    this.activeModal.close();
+  dismiss(){
+    this.activeModal.dismiss();
   }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CurrentTopicService } from 'src/app/services/current-topic.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +8,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit  {
   public selectedTopic: string = 'all';
 
-  constructor(private route: ActivatedRoute, private router: Router){
+  constructor(private route: ActivatedRoute, private router: Router, private currentTopicService: CurrentTopicService){
+  }
 
+  ngOnInit(): void {
+    this.currentTopicService.currentTopic$.subscribe({
+      next: topic => {
+        this.selectedTopic = topic;
+      }
+    })
   }
 
   topics = [
@@ -28,7 +36,8 @@ export class SidebarComponent {
       this.router.navigate(['/']);
     }
     else{
-      this.router.navigate(['/topics/' + topic]);
+      //this.router.navigate(['/topics/' + topic]);
+      this.router.navigate(['/topics', topic]);
     }
     
     this.selectedTopic = topic;
