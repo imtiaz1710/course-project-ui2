@@ -6,10 +6,10 @@ import { TopicDetailsComponent } from "./components/topic-details/topic-details.
 import { AuthGuard } from "./guards/auth-guard";
 
 const routes: Routes = [
-  { path: '', component: TopicDetailsComponent, canActivate: [AuthGuard] },
+  { path: '', component: TopicDetailsComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'topics/:id', component: TopicDetailsComponent },
-  { path: 'topics/:id/:roomId', component: RoomDetailsComponent },
+  { path: 'topics/:id/:roomId', component: RoomDetailsComponent, canActivate: [AuthGuard] },
 
   // { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
