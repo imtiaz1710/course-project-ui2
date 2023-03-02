@@ -1,6 +1,6 @@
 import { NotExpr } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CurrentTopicService } from 'src/app/services/current-topic.service';
 import { RoomService } from 'src/app/services/room.service';
@@ -15,7 +15,7 @@ export class TopicDetailsComponent implements OnInit {
   posts: any[] = [];
   topic: any;
   id: string;
-  constructor(private route: ActivatedRoute, private modalService: NgbModal, 
+  constructor(private route: ActivatedRoute, private modalService: NgbModal, private router: Router,
     private roomAService: RoomService, private currentTopicService: CurrentTopicService) { }
 
   ngOnInit() {
@@ -40,6 +40,10 @@ export class TopicDetailsComponent implements OnInit {
     //   { id: 3, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
     //   { id: 4, name: 'Second Post', description: 'This is the second post', comments: [], showComment: false }
     // ];
+  }
+
+  enterRoom(name: string){
+    this.router.navigate([`/topics/${this.id?? 'all'}/${name}`]);
   }
 
   getRoomsByTopic(topic: any){

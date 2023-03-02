@@ -19,6 +19,10 @@
   <div class="row">
     <div *ngFor="let post of posts" class="col-10">
       <div class="post-container">
+        <div class="d-flex justify-content-end">
+          <button role="button" (click)="enterRoom(post?.id)" class="btn btn-secondary">Enter Room</button>
+        </div>
+        
         <div class="post-header">
           <div class="post-title">{{ post.name }}</div>
           <!-- <div class="post-date">March 1, 2023</div> -->
@@ -37,10 +41,6 @@
             <div class="comment-count">5 comments</div>
           </div> -->
           <div *ngIf="post.showComment">
-            <form class="comment-form">
-              <textarea id="comment{{post.id}}" placeholder="Write a comment"></textarea>
-              <button (click)="addComment(post, 'New Comment')" type="submit" style="margin-top: 1rem;">Comment</button>
-            </form>
             <div *ngFor="let comment of post.comments" class="comment">
               <div class="comment-avatar">
                 <img src="https://via.placeholder.com/32" alt="avatar">

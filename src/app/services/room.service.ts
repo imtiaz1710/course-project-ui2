@@ -35,4 +35,9 @@ export class RoomService {
     const url = `${this.baseUrl}/search?topic=${topic}`;
     return this.http.get(url);
   }
+
+  getRoomDetailsById(id: string): Observable<any>{
+    const url = `${this.baseUrl}/room-detail/${id}`;
+    return this.http.get(url);
+  }
 }

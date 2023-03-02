@@ -11,6 +11,7 @@ import { CreateRoomComponent } from './components/create-room/create-room.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoomDetailsComponent } from './components/room-details/room-details.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     BodyComponent,
     TopicDetailsComponent,
     CreateRoomComponent,
-    AuthComponent
+    AuthComponent,
+    RoomDetailsComponent
   ],
   imports: [
     BrowserModule,
