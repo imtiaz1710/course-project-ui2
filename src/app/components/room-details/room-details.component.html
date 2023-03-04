@@ -3,15 +3,15 @@
       <div class="col-10">
         <div class="post-container">
           <div class="post-header">
-            <div class="post-title">{{ room.name }}</div>
+            <div class="post-title">{{ room?.name }}</div>
             <!-- <div class="post-date">March 1, 2023</div> -->
           </div>
           <div class="post-description">
-            <p>{{ room.description }}</p>
+            <p>{{ room?.description }}</p>
           </div>
           <div class="post-footer">
             <!-- <div class="post-likes">20 likes</div> -->
-            <div class="post-comment-count">5 comments</div>
+            <div class="post-comment-count">{{room?.comments.count}} comments</div>
           </div>
           <div>
             <!-- <div class="comment-header">
@@ -20,20 +20,20 @@
             </div> -->
             <div>
               <form class="comment-form">
-                <textarea id="comment{{room.id}}" placeholder="Write a comment"></textarea>
+                <textarea id="comment{{room?.id}}" placeholder="Write a comment"></textarea>
                 <button (click)="addComment(room, 'New Comment')" type="submit" style="margin-top: 1rem;">Comment</button>
               </form>
-              <div *ngFor="let comment of room.comments" class="comment">
+              <div *ngFor="let comment of room?.comments" class="comment">
                 <div class="comment-avatar">
                   <img src="https://via.placeholder.com/32" alt="avatar">
                 </div>
                 <div class="comment-content">
                   <div class="comment-header">
-                    <div class="comment-author">John Doe</div>
+                    <div class="comment-author">{{comment?.comment_owner?.email}}</div>
                     <div class="comment-date">March 2, 2023</div>
                   </div>
                   <div class="comment-text">
-                    <p>{{comment}}</p>
+                    <p>{{comment?.body}}</p>
                   </div>
                   <div class="comment-actions">
                     <div class="comment-action">

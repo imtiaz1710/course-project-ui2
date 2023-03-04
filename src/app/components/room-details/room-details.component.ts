@@ -30,9 +30,16 @@ export class RoomDetailsComponent implements OnInit {
     })
   }
 
-  addComment(post: any, comment: string) {
-    let x = <HTMLInputElement>document.getElementById(`comment${post.id}`);
-    post.comments.push(x.value);
-    x.value = '';
+  addComment(room: any, comment: string) {
+    let x = <HTMLInputElement>document.getElementById(`comment${room.id}`);
+    //post.comments.push(x.value);
+    this.roomService.commentRoom(room.id, x.value).subscribe({
+      next: (res) => {
+        x.value = '';
+        this.getRoomDetails(room.id);
+        debugger
+      },
+      error: err => console.log(err)
+    })
   }
 }

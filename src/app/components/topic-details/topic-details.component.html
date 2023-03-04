@@ -24,15 +24,15 @@
         </div>
         
         <div class="post-header">
-          <div class="post-title">{{ post.name }}</div>
+          <div class="post-title">{{ post?.name }}</div>
           <!-- <div class="post-date">March 1, 2023</div> -->
         </div>
         <div class="post-description">
-          <p>{{ post.description }}</p>
+          <p>{{ post?.description }}</p>
         </div>
         <div class="post-footer">
           <!-- <div class="post-likes">20 likes</div> -->
-          <div class="post-comment-count">5 comments</div>
+          <div class="post-comment-count">{{post?.comments?.length}} comments</div>
           <button class="post-comment-button" (click)="showCommentToggle(post)">Show Comments</button>
         </div>
         <div>
@@ -41,17 +41,18 @@
             <div class="comment-count">5 comments</div>
           </div> -->
           <div *ngIf="post.showComment">
-            <div *ngFor="let comment of post.comments" class="comment">
+            <!-- <pre>{{post | json}}</pre> -->
+            <div *ngFor="let comment of post?.comments" class="comment">
               <div class="comment-avatar">
                 <img src="https://via.placeholder.com/32" alt="avatar">
               </div>
               <div class="comment-content">
                 <div class="comment-header">
-                  <div class="comment-author">John Doe</div>
+                  <div class="comment-author">{{comment?.comment_owner.email}}</div>
                   <div class="comment-date">March 2, 2023</div>
                 </div>
                 <div class="comment-text">
-                  <p>{{comment}}</p>
+                  <p>{{comment?.body}}</p>
                 </div>
                 <div class="comment-actions">
                   <div class="comment-action">

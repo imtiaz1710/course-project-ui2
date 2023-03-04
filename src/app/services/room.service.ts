@@ -40,4 +40,16 @@ export class RoomService {
     const url = `${this.baseUrl}/room-detail/${id}`;
     return this.http.get(url);
   }
+
+  commentRoom(roomId: string, comment: string): Observable<any>{
+    const url = `${this.baseUrl}/room/${roomId}/comment`;
+    const authToken = localStorage.getItem(this.authTokenKey);
+    const headers = new HttpHeaders({
+      'Authorization': `token ${authToken}`
+    });
+
+    const body = { body: comment};
+
+    return this.http.post(url, body, {headers});
+  }
 }

@@ -22,15 +22,15 @@ export class TopicDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.currentTopicService.currentTopic$.next(this.id);
-      
-      if(this.id){
+
+      if (this.id) {
         this.getRoomsByTopic(this.id);
       }
-      else{
+      else {
         this.getAllRooms();
       }
-   });
-   
+    });
+
     // this.topic = { id: id, name: 'Python' };
     //this.id = this.route.snapshot.paramMap.get('id');
 
@@ -42,11 +42,11 @@ export class TopicDetailsComponent implements OnInit {
     // ];
   }
 
-  enterRoom(name: string){
-    this.router.navigate([`/topics/${this.id?? 'all'}/${name}`]);
+  enterRoom(name: string) {
+    this.router.navigate([`/topics/${this.id ?? 'all'}/${name}`]);
   }
 
-  getRoomsByTopic(topic: any){
+  getRoomsByTopic(topic: any) {
     return this.roomAService.getRoomsByTopic(topic).subscribe({
       next: (rooms) => {
         this.posts = rooms;
@@ -57,8 +57,7 @@ export class TopicDetailsComponent implements OnInit {
   getAllRooms() {
     this.roomAService.getRooms().subscribe({
       next: res => {
-        this.posts = res.data.map(x => { return { id: x.id, Comment: x.comment, name: x.name,
-           description: x.description, showComment: false } })
+        this.posts = res.data.map(x => { return { ...x, showComment: false } })
       }
     })
   }
