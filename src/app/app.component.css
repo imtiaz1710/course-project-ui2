@@ -36,6 +36,6 @@
 
 .main-content {
   flex: 1;
-  overflow: auto; /* add this to enable scrolling */
+
   padding: 16px;
 }
