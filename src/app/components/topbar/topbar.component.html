@@ -24,16 +24,19 @@
 
 <div class="top-bar">
     <div class="search-box">
-      <input type="text" placeholder="Search">
-      <button>Search</button>
+        <input type="text" placeholder="Search">
+        <button>Search</button>
     </div>
-    <div class="profile-dropdown">
-      <div (click)="toggleProfileIcon()" style="font-size:30px;color:lightblue;margin-right: 2rem;" class="bi bi-person"></div>
-      <ul style="margin-top: 1rem;" *ngIf="profileIcon">
-        <li>Profile</li>
-        <li>Settings</li>
-        <li>Logout</li>
-      </ul>
+    <div *ngIf="!isLogin" class="login">
+        <button (click)="logIn()">Login</button>
     </div>
-  </div>
-  
+    <div *ngIf="isLogin" class="profile-dropdown">
+        <div (click)="toggleProfileOptions()" style="font-size:30px;color:lightblue;margin-right: 2rem;"
+            class="bi bi-person"></div>
+        <ul style="margin-top: 1rem;" *ngIf="isVisibleProfileOptions">
+            <li>Profile</li>
+            <li>Settings</li>
+            <li (click)="logout()">Logout</li>
+        </ul>
+    </div>
+</div>

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   private baseUrl = 'http://127.0.0.1:8000/account'; // replace with your backend API URL
   private authTokenKey = 'auth_token';
+
+  public isLogIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,7 @@ export class AuthService {
     return this.http.post(url, body).pipe(
       tap(res => {
           localStorage.setItem(this.authTokenKey, res.token);
+          this.isLogIn$.next(true);
       })
     );
   }
@@ -31,6 +33,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.authTokenKey);
+    this.isLogIn$.next(false);
   }
 
   isAuthenticated(): boolean {
