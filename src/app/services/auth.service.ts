@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   public isLogIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated());
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string): Observable<any> {
     const url = `${this.baseUrl}/login/`;
@@ -20,6 +21,7 @@ export class AuthService {
     return this.http.post(url, body).pipe(
       tap(res => {
           localStorage.setItem(this.authTokenKey, res.token);
+          localStorage.setItem('profile_id', res.profile_id);
           this.isLogIn$.next(true);
       })
     );
@@ -34,6 +36,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.authTokenKey);
     this.isLogIn$.next(false);
+    this.router.navigate['/'];
   }
 
   isAuthenticated(): boolean {
