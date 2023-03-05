@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RoomDetailsComponent } from './components/room-details/room-details.com
     TopicDetailsComponent,
     CreateRoomComponent,
     AuthComponent,
-    RoomDetailsComponent
+    RoomDetailsComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
