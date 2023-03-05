@@ -34,7 +34,7 @@
         <div (click)="toggleProfileOptions()" style="font-size:30px;color:lightblue;margin-right: 2rem;"
             class="bi bi-person"></div>
         <ul style="margin-top: 1rem;" *ngIf="isVisibleProfileOptions">
-            <li>Profile</li>
+            <li (click)="gotoProfile()">Profile</li>
             <li>Settings</li>
             <li (click)="logout()">Logout</li>
         </ul>

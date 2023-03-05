@@ -13,6 +13,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
     CreateRoomComponent,
     AuthComponent,
     RoomDetailsComponent,
-    TopbarComponent
+    TopbarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

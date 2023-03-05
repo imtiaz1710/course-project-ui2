@@ -26,6 +26,9 @@ export class TopbarComponent implements OnInit  {
   toggleProfileOptions(){
     this.isVisibleProfileOptions =!this.isVisibleProfileOptions;
   }
+  gotoProfile(){
+    this.router.navigate(['/profile']);
+  }
 
   logIn(){
     this.router.navigate(['/auth']);
