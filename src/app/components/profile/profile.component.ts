@@ -61,12 +61,12 @@ export class ProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('first_name', updatedProfile.first_name);
     formData.append('last_name', updatedProfile.last_name);
-    formData.append('image', updatedProfile.image, updatedProfile.image.name);
+    if(!!updatedProfile.image)
+      formData.append('image', updatedProfile.image, updatedProfile?.image?.name);
     formData.append('github_link', updatedProfile.github_link);
 
     this.commonService.updateProfile(this.profileId, formData).subscribe({
       next: (res) => {
-        debugger
         this.loadProfile(this.profileId);
       }
     })

@@ -8,26 +8,13 @@
             <h5 class="card-title">Activity {{i + 1}}</h5>
           </div>
           <div class="card-body">
-            <p class="card-text">{{activity?.comment_owner?.email}} comment {{activity?.body}} on post {{activity?.id}}</p>
+            <p class="card-text"><a (click)="gotoProfile(activity?.comment_owner?.id)" style="color:cornflowerblue" role="button">{{activity?.comment_owner?.first_name + ' ' + activity?.comment_owner?.last_name}}</a> 
+              comment "{{activity?.body}}" on room <a (click)="gotoRoom(activity?.room)" style="color:cornflowerblue" role="button">{{activity?.room?.name}}</a></p>
           </div>
-          <div class="card-footer text-muted">
-            2 days ago
-          </div>
-        </div>
-      <!-- </div> -->
-      <!-- <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Activity 2</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div class="card-footer text-muted">
-            3 days ago
+          <div class="card-footer text-muted"> 
+            {{activity.created | date: 'd, MMMM, YYYY'}}
           </div>
         </div>
-      </div> -->
     </div>
   </div>
   
