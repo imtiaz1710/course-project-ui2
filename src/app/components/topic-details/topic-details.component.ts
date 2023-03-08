@@ -30,16 +30,6 @@ export class TopicDetailsComponent implements OnInit {
         this.getAllRooms();
       }
     });
-
-    // this.topic = { id: id, name: 'Python' };
-    //this.id = this.route.snapshot.paramMap.get('id');
-
-    // this.posts = [
-    //   { id: 1, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
-    //   { id: 2, name: 'Second Post', description: 'This is the second post', comments: [], showComment: false },
-    //   { id: 3, name: 'First Post', description: 'This is the first post', comments: [], showComment: false },
-    //   { id: 4, name: 'Second Post', description: 'This is the second post', comments: [], showComment: false }
-    // ];
   }
 
   enterRoom(name: string) {
@@ -61,6 +51,7 @@ export class TopicDetailsComponent implements OnInit {
       }
     })
   }
+  
   showCommentToggle(post: any) {
     post.showComment = !post.showComment;
   }

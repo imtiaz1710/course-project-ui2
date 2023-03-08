@@ -20,17 +20,17 @@ export class AuthService {
     const body = { username, password };
     return this.http.post(url, body).pipe(
       tap(res => {
-          localStorage.setItem(this.authTokenKey, res.token);
-          localStorage.setItem('profile_id', res.profile_id);
-          this.isLogIn$.next(true);
+        localStorage.setItem(this.authTokenKey, res.token);
+        localStorage.setItem('profile_id', res.profile_id);
+        this.isLogIn$.next(true);
       })
     );
   }
 
-  register(email: string, password: string, password2): Observable<any> {
+  register(email: string, first_name: string, last_name: string, password: string, password2): Observable<any> {
     const url = `${this.baseUrl}/register/`;
-    const body = { email, password, password2 };
-    return this.http.post(url, body);
+    const body = { email, first_name, last_name, password, password2 };
+    return this.http.post(url, body).pipe(tap(res => this.isLogIn$.next(true)));
   }
 
   logout(): void {

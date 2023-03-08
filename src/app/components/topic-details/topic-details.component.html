@@ -50,19 +50,19 @@
                   <div class="comment-content">
                     <div class="comment-header">
                       <div class="comment-author">{{comment?.comment_owner.email}}</div>
-                      <div class="comment-date">March 2, 2023</div>
+                      <div class="comment-date">{{comment?.created | date:'d, MMMM, yyyy'}}</div>
                     </div>
                     <div class="comment-text">
                       <p>{{comment?.body}}</p>
                     </div>
-                    <div class="comment-actions">
+                    <!-- <div class="comment-actions">
                       <div class="comment-action">
                         <i class="fa fa-thumbs-up"></i>Like
                       </div>
                       <div class="comment-action">
                         <i class="fa fa-comment"></i>Reply
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
