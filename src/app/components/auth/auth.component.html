@@ -1,51 +1,8 @@
-<!-- <div class="auth-container">
-    <div class="card">
-      <h2>{{ isLoginMode ? 'Login' : 'Register' }}</h2>
-      <form [formGroup]="isLoginMode ? loginForm : registrationForm" (ngSubmit)="isLoginMode ? onSubmitLoginForm() : onSubmitRegistrationForm()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" formControlName="email">
-          <div *ngIf="isLoginMode && loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
-            <span *ngIf="loginForm.get('email').hasError('required')">Email is required</span>
-            <span *ngIf="loginForm.get('email').hasError('email')">Please enter a valid email</span>
-          </div>
-          <div *ngIf="!isLoginMode && registrationForm.get('email').invalid && (registrationForm.get('email').dirty || registrationForm.get('email').touched)">
-            <span *ngIf="registrationForm.get('email').hasError('required')">Email is required</span>
-            <span *ngIf="registrationForm.get('email').hasError('email')">Please enter a valid email</span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" formControlName="password">
-          <div *ngIf="isLoginMode && loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
-            <span *ngIf="loginForm.get('password').hasError('required')">Password is required</span>
-          </div>
-          <div *ngIf="!isLoginMode && registrationForm.get('password').invalid && (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
-            <span *ngIf="registrationForm.get('password').hasError('required')">Password is required</span>
-          </div>
-        </div>
-        <div class="form-group" *ngIf="!isLoginMode">
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" formControlName="confirmPassword">
-          <div *ngIf="registrationForm.get('confirmPassword').invalid && (registrationForm.get('confirmPassword').dirty || registrationForm.get('confirmPassword').touched)">
-            <span *ngIf="registrationForm.get('confirmPassword').hasError('required')">Confirm Password is required</span>
-            <span *ngIf="registrationForm.get('confirmPassword').hasError('mismatch')">Passwords do not match</span>
-          </div>
-        </div>
-        <div class="error-message" *ngIf="error">{{ error }}</div>
-        <button type="submit" class="btn btn-primary">{{ isLoginMode ? 'Login' : 'Register' }}</button>
-      </form>
-      <button class="btn btn-link" (click)="onSwitchMode()">{{ isLoginMode ? 'Switch to Register' : 'Switch to Login' }}</button>
-    </div>
-  </div>
-   -->
-
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-6">
       <div class="card border-0 shadow-lg" style="width: 110%; height: 100%;">
-        <div class="card-body" >
+        <div class="card-body">
           <h2 class="card-title mb-4">{{ isLoginMode ? 'Login' : 'Register' }}</h2>
           <form [formGroup]="isLoginMode ? loginForm : registrationForm"
             (ngSubmit)="isLoginMode ? onSubmitLoginForm() : onSubmitRegistrationForm()">
@@ -67,6 +24,28 @@
                 <div class="invalid-feedback" *ngIf="registrationForm.get('email').hasError('email')">
                   Please enter a valid
                   email</div>
+              </div>
+            </div>
+            <div *ngIf="!isLoginMode" class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="first_name" id="first_name" class="form-control" formControlName="first_name">
+              <div
+                *ngIf="!isLoginMode && registrationForm.get('first_name').invalid && (registrationForm.get('first_name').dirty || registrationForm.get('first_name').touched)">
+                <div class="invalid-feedback" *ngIf="registrationForm.get('first_name').hasError('required')">First Name
+                  is
+                  required
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!isLoginMode" class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="last_name" id="last_name" class="form-control" formControlName="last_name">
+              <div
+                *ngIf="!isLoginMode && registrationForm.get('last_name').invalid && (registrationForm.get('last_name').dirty || registrationForm.get('last_name').touched)">
+                <div class="invalid-feedback" *ngIf="registrationForm.get('last_name').hasError('required')">Last Name
+                  is
+                  required
+                </div>
               </div>
             </div>
             <div class="form-group">
