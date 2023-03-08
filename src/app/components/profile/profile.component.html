@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" src="https://via.placeholder.com/300x300" alt="Profile picture">
+          <img class="card-img-top" [src]="'E:\Applications\MyApps\versity-project\src' + profile?.image">
           <div class="card-body">
             <h5 class="card-title">John Doe</h5>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod tortor id massa ultrices, ac mattis lorem consequat.</p>
@@ -14,7 +14,7 @@
           <div class="card-body">
             <h5 class="card-title">Profile Information</h5>
             <hr>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" id="name" placeholder="Enter your name">
             </div>
@@ -26,7 +26,39 @@
               <label for="bio">Bio</label>
               <textarea class="form-control" id="bio" rows="5" placeholder="Tell us about yourself"></textarea>
             </div>
-            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-primary">Save</button> -->
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="mt-4">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="first_name">
+              </div>
+            
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="last_name">
+              </div>
+            
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email">
+              </div>
+            
+              <div class="form-group">
+                <label>Image</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" (change)="onFileSelected($event)" accept="image/*" formControlName="image">
+                  <label class="custom-file-label">{{ selectedFile?.name || 'Choose file' }}</label>
+                </div>
+              </div>
+            
+              <div class="form-group">
+                <label>Github Link</label>
+                <input type="url" class="form-control" formControlName="github_link">
+              </div>
+            
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="!profileForm.valid">Save</button>
+            </form>
+            
           </div>
         </div>
       </div>

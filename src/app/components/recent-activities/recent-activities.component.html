@@ -3,12 +3,12 @@
     <hr>
     <div class="row">
       <!-- <div class="col-md-6"> -->
-        <div class="card">
+        <div *ngFor="let activity of activities;index as i" class="card">
           <div class="card-header">
-            <h5 class="card-title">Activity 1</h5>
+            <h5 class="card-title">Activity {{i + 1}}</h5>
           </div>
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="card-text">{{activity?.comment_owner?.email}} comment {{activity?.body}} on post {{activity?.id}}</p>
           </div>
           <div class="card-footer text-muted">
             2 days ago
