@@ -24,12 +24,12 @@
                 <button (click)="addComment(room, 'New Comment')" type="submit" style="margin-top: 1rem;">Comment</button>
               </form>
               <div *ngFor="let comment of room?.comments" class="comment">
-                <div class="comment-avatar">
-                  <img src="https://via.placeholder.com/32" alt="avatar">
+                <div>
+                  <img class="comment-avatar" [src]="comment?.comment_owner?.image_url">
                 </div>
                 <div class="comment-content">
                   <div class="comment-header">
-                    <div class="comment-author">{{comment?.comment_owner?.email}}</div>
+                    <div class="comment-author" (click)="gotoProfile(comment?.comment_owner?.id)" role="button">{{comment?.comment_owner.first_name + ' ' + comment?.comment_owner?.last_name}}</div>
                     <div class="comment-date">{{comment?.created | date: 'd, MMMM, yyyy'}}</div>
                   </div>
                   <div class="comment-text">

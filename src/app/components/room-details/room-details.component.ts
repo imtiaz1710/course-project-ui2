@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class RoomDetailsComponent implements OnInit {
   roomId: string;
   room: any;
 
-  constructor(private roomService: RoomService, private route: ActivatedRoute) {
+  constructor(private roomService: RoomService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,5 +41,9 @@ export class RoomDetailsComponent implements OnInit {
       },
       error: err => console.log(err)
     })
+  }
+
+  gotoProfile(id: string) {
+    this.router.navigate(['/profile', id]);
   }
 }

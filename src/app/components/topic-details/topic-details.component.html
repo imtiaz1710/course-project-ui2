@@ -44,12 +44,12 @@
               <div *ngIf="post.showComment">
                 <!-- <pre>{{post | json}}</pre> -->
                 <div *ngFor="let comment of post?.comments" class="comment">
-                  <div class="comment-avatar">
-                    <img src="https://via.placeholder.com/32" alt="avatar">
+                  <div >
+                    <img class="comment-avatar" [src]="comment?.comment_owner?.image_url">
                   </div>
                   <div class="comment-content">
                     <div class="comment-header">
-                      <div class="comment-author">{{comment?.comment_owner.email}}</div>
+                      <div (click)="gotoProfile(comment?.comment_owner?.id)" class="comment-author" role="button">{{comment?.comment_owner.first_name + ' ' + comment?.comment_owner?.last_name}}</div>
                       <div class="comment-date">{{comment?.created | date:'d, MMMM, yyyy'}}</div>
                     </div>
                     <div class="comment-text">

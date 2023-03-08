@@ -48,10 +48,11 @@ export class TopicDetailsComponent implements OnInit {
     this.roomAService.getRooms().subscribe({
       next: res => {
         this.posts = res.data.map(x => { return { ...x, showComment: false } })
+        debugger
       }
     })
   }
-  
+
   showCommentToggle(post: any) {
     post.showComment = !post.showComment;
   }
@@ -69,5 +70,9 @@ export class TopicDetailsComponent implements OnInit {
       this.getRoomsByTopic(this.id);
     })
     modalRef.componentInstance.topic = this.topic;
+  }
+
+  gotoProfile(id: string) {
+    this.router.navigate(['/profile', id]);
   }
 }
