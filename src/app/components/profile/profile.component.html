@@ -2,10 +2,10 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" [src]="'E:\Applications\MyApps\versity-project\src' + profile?.image">
+          <img class="card-img-top" [src]="profile?.image_url">
           <div class="card-body">
-            <h5 class="card-title">John Doe</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod tortor id massa ultrices, ac mattis lorem consequat.</p>
+            <h5 class="card-title">{{profile?.first_name}} {{profile?.last_name}}</h5>
+            <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod tortor id massa ultrices, ac mattis lorem consequat.</p> -->
           </div>
         </div>
       </div>
