@@ -23,35 +23,58 @@ export class RoomService {
     return this.http.post(url, body, { headers });
   }
 
-  getRooms(): Observable<any>{
+  getRooms(): Observable<any> {
     const url = `${this.baseUrl}/rooms`;
     return this.http.get(url);
   }
 
-  getRoomsByTopic(topic: string): Observable<any>{
+  getRoomsByTopic(topic: string): Observable<any> {
     const url = `${this.baseUrl}/search?topic=${topic}`;
     return this.http.get(url);
   }
 
-  getRoomDetailsById(id: string): Observable<any>{
+  getRoomDetailsById(id: string): Observable<any> {
     const url = `${this.baseUrl}/room-detail/${id}`;
     return this.http.get(url);
   }
 
-  commentRoom(roomId: string, comment: string): Observable<any>{
+  commentRoom(roomId: string, comment: string): Observable<any> {
     const url = `${this.baseUrl}/room/${roomId}/comment`;
     const authToken = localStorage.getItem(this.authTokenKey);
     const headers = new HttpHeaders({
       'Authorization': `token ${authToken}`
     });
 
-    const body = { body: comment};
+    const body = { body: comment };
 
-    return this.http.post(url, body, {headers});
+    return this.http.post(url, body, { headers });
   }
 
-  getRoomsBySerachText(text: string): Observable<any>{
+  getRoomsBySerachText(text: string): Observable<any> {
     const url = `${this.baseUrl}/search?search=${text}`;
     return this.http.get(url);
+  }
+
+  editRoom(roomId: string, name: string, description: string, topic: string): Observable<any> {
+    const authToken = localStorage.getItem(this.authTokenKey);
+    const headers = new HttpHeaders({
+      'Authorization': `token ${authToken}`
+    });
+
+    const body = { topic, name, description };
+    const url = `${this.baseUrl}/room-update/${roomId}`;
+    return this.http.put(url, body, { headers });
+  }
+
+  deleteRoom(roomId: string): Observable<any> {
+    const url = `${this.baseUrl}/delete-room/${roomId}`;
+    const authToken = localStorage.getItem(this.authTokenKey);
+    const headers = new HttpHeaders({
+      'Authorization': `token ${authToken}`
+    });
+
+    const body = { };
+
+    return this.http.post(url, body, { headers });
   }
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from 'src/app/services/common.service';
+import { RoomService } from 'src/app/services/room.service';
+import { CreateRoomComponent } from '../create-room/create-room.component';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +18,8 @@ export class ProfileComponent implements OnInit {
   profileId: string;
   profile: any;
 
-  constructor(private fb: FormBuilder, private commonService: CommonService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private fb: FormBuilder, private commonService: CommonService, private route: ActivatedRoute,
+     private router: Router, private modalService: NgbModal, private roomService: RoomService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -30,6 +34,7 @@ export class ProfileComponent implements OnInit {
     this.commonService.getProfile(profileId).subscribe({
       next: (res) => {
         this.profile = res?.data;
+        debugger
         this.profileForm.patchValue(this.profile);
       }
     });
@@ -76,10 +81,22 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteRoom(room){
-
+    this.roomService.deleteRoom(room?.id).subscribe({
+      next: (res) => {
+        this.loadProfile(this.profileId);
+      }
+    });
   }
 
-  editRoom(room){
-
+  editRoom(room) {
+    const modalRef = this.modalService.open(CreateRoomComponent);
+    modalRef.result.then((response) => {
+      this.gotoRoom(room.id);
+    })
+    modalRef.componentInstance.topic = room?.topic?.name;
+    modalRef.componentInstance.description = room?.description;;
+    modalRef.componentInstance.name = room?.name;
+    modalRef.componentInstance.isEditMode = true;
+    modalRef.componentInstance.id = room?.id;
   }
 }

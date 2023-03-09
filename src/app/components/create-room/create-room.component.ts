@@ -12,30 +12,40 @@ export class CreateRoomComponent implements OnInit {
   name: string = '';
   description: string = '';
   topic: string = '';
+  id: string = '';
+  isEditMode: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, public route: ActivatedRoute, public roomService: RoomService) {}
+  constructor(public activeModal: NgbActiveModal, public route: ActivatedRoute, public roomService: RoomService) { }
 
   ngOnInit(): void {
   }
 
   saveRoom() {
-    // create new post object and add to topic
-    //const newPost = { id: 22 + 1, header: this.name, description: this.description };
-    //.post.posts.push(newPost);
-    this.roomService.createRoom(this.topic, this.name, this.description).subscribe({
-      next: (res) => {
-        this.activeModal.close();
-      }, error: (err) => { 
-        this.activeModal.close();
-      }
-    })
-    // close modal and reset input fields
-    
-    this.name = '';
-    this.description = '';
+    if (this.isEditMode) {
+      this.roomService.editRoom(this.id, this.name, this.description, this.topic).subscribe({
+        next: res => {
+          this.activeModal.close();
+        },
+        error: (err) => {
+          this.activeModal.close();
+        }
+      });
+    }
+    else {
+      this.roomService.createRoom(this.topic, this.name, this.description).subscribe({
+        next: (res) => {
+          this.activeModal.close();
+        }, error: (err) => {
+          this.activeModal.close();
+        }
+      })
+
+      this.name = '';
+      this.description = '';
+    }
   }
 
-  dismiss(){
+  dismiss() {
     this.activeModal.dismiss();
   }
 }

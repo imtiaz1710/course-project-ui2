@@ -23,7 +23,7 @@ export class TopicDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.currentTopicService.currentTopic$.next(this.id ?? 'all');
-      
+
       this.commonService.allRoomSearchText$.subscribe({
         next : res => {
           this.getRoomsBySearchText(res);

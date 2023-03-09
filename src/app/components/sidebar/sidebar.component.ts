@@ -34,7 +34,6 @@ export class SidebarComponent implements OnInit  {
 
   selectTopic(topic: string) {
     //this.currentTopicService.currentTopic$.next(topic);
-debugger
     if(topic === 'all'){
       this.router.navigate(['/']);
     }
