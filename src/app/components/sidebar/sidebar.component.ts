@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit  {
   ngOnInit(): void {
     this.currentTopicService.currentTopic$.subscribe({
       next: topic => {
+        debugger
         this.selectedTopic = topic;
       }
     })
@@ -32,14 +33,13 @@ export class SidebarComponent implements OnInit  {
   ];
 
   selectTopic(topic: string) {
+    this.currentTopicService.currentTopic$.next(topic);
+
     if(topic === 'all'){
       this.router.navigate(['/']);
     }
     else{
-      //this.router.navigate(['/topics/' + topic]);
       this.router.navigate(['/topics', topic]);
     }
-    
-    this.selectedTopic = topic;
   }  
 }

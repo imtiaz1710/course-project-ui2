@@ -19,7 +19,6 @@ export class RecentActivitiesComponent implements OnInit {
   getRecentActivities(){
     this.commonService.getRecentActivities().subscribe({
       next: (a: {data: any[], status}) => {
-        debugger
         this.activities = a.data;
       },
       error: err => console.log(err)

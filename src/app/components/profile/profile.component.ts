@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
   loadProfile(profileId: string): void {
     this.commonService.getProfile(profileId).subscribe({
       next: (res) => {
-        debugger
         this.profile = res?.data;
         this.profileForm.patchValue(this.profile);
       }

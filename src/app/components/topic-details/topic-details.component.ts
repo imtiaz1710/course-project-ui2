@@ -21,7 +21,7 @@ export class TopicDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.currentTopicService.currentTopic$.next(this.id);
+      this.currentTopicService.currentTopic$.next(this.id ?? 'all');
 
       if (this.id) {
         this.getRoomsByTopic(this.id);
@@ -48,7 +48,6 @@ export class TopicDetailsComponent implements OnInit {
     this.roomAService.getRooms().subscribe({
       next: res => {
         this.posts = res.data.map(x => { return { ...x, showComment: false } })
-        debugger
       }
     })
   }

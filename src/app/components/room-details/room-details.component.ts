@@ -37,7 +37,6 @@ export class RoomDetailsComponent implements OnInit {
       next: (res) => {
         x.value = '';
         this.getRoomDetails(room.id);
-        debugger
       },
       error: err => console.log(err)
     })
