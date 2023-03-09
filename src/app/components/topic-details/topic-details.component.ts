@@ -79,7 +79,7 @@ export class TopicDetailsComponent implements OnInit {
 
   openCreatePostModal() {
     this.topic = this.route.snapshot.paramMap.get('id');
-    const modalRef = this.modalService.open(CreateRoomComponent);
+    const modalRef = this.modalService.open(CreateRoomComponent, { size: 'lg', backdrop: 'static' });
     modalRef.result.then((response) => {
       this.getRoomsByTopic(this.id);
     })

@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
   }
 
   editRoom(room) {
-    const modalRef = this.modalService.open(CreateRoomComponent);
+    const modalRef = this.modalService.open(CreateRoomComponent, { size: 'lg', backdrop: 'static' });
     modalRef.result.then((response) => {
       this.gotoRoom(room.id);
     })
