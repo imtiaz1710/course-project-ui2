@@ -182,7 +182,7 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   margin-bottom: 1rem;
-  margin-left: 1rem;
+  margin-left: 0..8rem;
 }
 
 .add-post-btn:hover {
