@@ -72,7 +72,7 @@
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let room of profile?.rooms">
               <h5 role="button" style="color:cornflowerblue" (click)="gotoRoom(room?.id)"> {{room.name }}</h5>
-              <p><span style="font-weight: bold;">Description: </span> {{room?.description}}</p>
+              <p class="text-truncate" data-toggle="tooltip" data-placement="top" title="{{room?.description}}"><span style="font-weight: bold;">Description: </span> {{room?.description}}</p>
               <div class="float-right">
                 <button class="btn btn-sm btn-secondary" [disabled]="this.isDisable" (click)="editRoom(room)">Edit</button>
                 <button class="btn btn-sm btn-danger ml-2 m-3" [disabled]="this.isDisable" (click)="deleteRoom(room)">Delete</button>
