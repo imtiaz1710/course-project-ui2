@@ -5,6 +5,7 @@
           <img class="card-img-top" [src]="profile?.image_url">
           <div class="card-body">
             <h5 class="card-title">{{profile?.first_name}} {{profile?.last_name}}</h5>
+           <span>Email: &nbsp;</span> <span class="card-title">{{profile?.email}}</span>
             <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod tortor id massa ultrices, ac mattis lorem consequat.</p> -->
           </div>
         </div>
@@ -33,17 +34,17 @@
                 <input type="text" class="form-control" formControlName="first_name">
               </div>
             
-              <div class="form-group">
+              <div class="form-group mt-2">
                 <label>Last Name</label>
                 <input type="text" class="form-control" formControlName="last_name">
               </div>
             
-              <div class="form-group">
+              <div class="form-group mt-2">
                 <label>Email</label>
                 <input type="email" class="form-control" formControlName="email">
               </div>
             
-              <div class="form-group">
+              <div class="form-group mt-2">
                 <label>Image</label>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" (change)="onFileSelected($event)" accept="image/*" formControlName="image">
@@ -51,7 +52,7 @@
                 </div>
               </div>
             
-              <div class="form-group">
+              <div class="form-group mt-2">
                 <label>Github Link</label>
                 <input type="url" class="form-control" formControlName="github_link">
               </div>
@@ -60,6 +61,23 @@
             </form>
             
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Rooms</h5>
+          <hr>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let room of profile?.rooms">
+              <h5 role="button" style="color:cornflowerblue" (click)="gotoRoom(room?.id)">{{ room.name }}</h5>
+              <div class="float-right">
+                <button class="btn btn-sm btn-secondary" [disabled]="this.isDisable" (click)="editRoom(room)">Edit</button>
+                <button class="btn btn-sm btn-danger ml-2 m-3" [disabled]="this.isDisable" (click)="deleteRoom(room)">Delete</button>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

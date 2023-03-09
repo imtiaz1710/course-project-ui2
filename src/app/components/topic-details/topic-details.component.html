@@ -1,17 +1,3 @@
-<!-- <h2>{{ post.name }}</h2>
-<p>{{ post.description }}</p> -->
-<!-- 
-<h3>Posts</h3>
-<ul>
-  <li *ngFor="let post of posts">
-    <h4>{{ post.header }}</h4>
-    <p>{{ post.description }}</p>
-    <button (click)="addComment(post, 'New Comment')">Add Comment</button>
-    <ul>
-      <li *ngFor="let comment of post.comments">{{ comment }}</li>
-    </ul>
-  </li>
-</ul> -->
 <div class="d-flex">
   <div class="container">
     <button *ngIf="!!id" class="add-post-btn" (click)="openCreatePostModal()">Create Room</button>
@@ -26,7 +12,6 @@
 
             <div class="post-header">
               <div class="post-title">{{ post?.name }}</div>
-              <!-- <div class="post-date">March 1, 2023</div> -->
             </div>
             <div class="post-description">
               <p>{{ post?.description }}</p>
@@ -38,17 +23,11 @@
                 class="comment-author" (click)="gotoProfile(post?.host?.id)">{{post?.host?.first_name + ' ' +  post?.host?.last_name}}</span>
             </div>
             <div class="post-footer">
-              <!-- <div class="post-likes">20 likes</div> -->
               <div class="post-comment-count">{{post?.comments?.length}} comments</div>
               <button class="post-comment-button" (click)="showCommentToggle(post)">Show Comments</button>
             </div>
             <div>
-              <!-- <div class="comment-header">
-                <div class="comment-title">Comments</div>
-                <div class="comment-count">5 comments</div>
-              </div> -->
               <div *ngIf="post.showComment">
-                <!-- <pre>{{post | json}}</pre> -->
                 <div *ngFor="let comment of post?.comments" class="comment">
                   <div>
                     <img class="comment-avatar" [src]="comment?.comment_owner?.image_url">
@@ -63,14 +42,6 @@
                     <div class="comment-text">
                       <p>{{comment?.body}}</p>
                     </div>
-                    <!-- <div class="comment-actions">
-                      <div class="comment-action">
-                        <i class="fa fa-thumbs-up"></i>Like
-                      </div>
-                      <div class="comment-action">
-                        <i class="fa fa-comment"></i>Reply
-                      </div>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -80,6 +51,7 @@
       </div>
     </div>
   </div>
+  <div *ngIf="!posts?.length" style="margin-right: 16rem; margin-top: 8rem;" class="container"><h3>No Rooms Found</h3></div>
   <div>
     <app-recent-activities></app-recent-activities>
   </div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class CommonService {
   private baseUrl = 'http://127.0.0.1:8000';
   private authTokenKey = 'auth_token';
+  public allRoomSearchText$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 

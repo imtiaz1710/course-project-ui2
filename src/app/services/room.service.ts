@@ -24,14 +24,11 @@ export class RoomService {
   }
 
   getRooms(): Observable<any>{
-    const authToken = localStorage.getItem(this.authTokenKey);
-
     const url = `${this.baseUrl}/rooms`;
     return this.http.get(url);
   }
 
   getRoomsByTopic(topic: string): Observable<any>{
-    const authToken = localStorage.getItem(this.authTokenKey);
     const url = `${this.baseUrl}/search?topic=${topic}`;
     return this.http.get(url);
   }
@@ -51,5 +48,10 @@ export class RoomService {
     const body = { body: comment};
 
     return this.http.post(url, body, {headers});
+  }
+
+  getRoomsBySerachText(text: string): Observable<any>{
+    const url = `${this.baseUrl}/search?search=${text}`;
+    return this.http.get(url);
   }
 }

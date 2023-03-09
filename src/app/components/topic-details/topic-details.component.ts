@@ -2,6 +2,7 @@ import { NotExpr } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommonService } from 'src/app/services/common.service';
 import { CurrentTopicService } from 'src/app/services/current-topic.service';
 import { RoomService } from 'src/app/services/room.service';
 import { CreateRoomComponent } from '../create-room/create-room.component';
@@ -16,12 +17,18 @@ export class TopicDetailsComponent implements OnInit {
   topic: any;
   id: string;
   constructor(private route: ActivatedRoute, private modalService: NgbModal, private router: Router,
-    private roomAService: RoomService, private currentTopicService: CurrentTopicService) { }
+    private roomAService: RoomService, private currentTopicService: CurrentTopicService,private commonService: CommonService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.currentTopicService.currentTopic$.next(this.id ?? 'all');
+      
+      this.commonService.allRoomSearchText$.subscribe({
+        next : res => {
+          this.getRoomsBySearchText(res);
+        }
+      });
 
       if (this.id) {
         this.getRoomsByTopic(this.id);
@@ -50,6 +57,14 @@ export class TopicDetailsComponent implements OnInit {
         this.posts = res.data.map(x => { return { ...x, showComment: false } })
       }
     })
+  }
+
+  getRoomsBySearchText(text: string) {
+    this.roomAService.getRoomsBySerachText(text).subscribe({
+      next: res => {
+        this.posts = res;
+      }
+    });
   }
 
   showCommentToggle(post: any) {

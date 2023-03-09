@@ -1,7 +1,7 @@
 <div class="top-bar">
     <div *ngIf="isSearchEnable" class="search-box">
-        <input type="text" placeholder="Search">
-        <button>Search</button>
+        <input [(ngModel)]="searchText" type="text" placeholder="Search">
+        <button (click)="search()">Search</button>
     </div>
     <div *ngIf="!isSearchEnable"></div>
     <div *ngIf="!isLogin" class="login">

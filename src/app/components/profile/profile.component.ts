@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   profileId: string;
   profile: any;
 
-  constructor(private fb: FormBuilder, private commonService: CommonService, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private commonService: CommonService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -69,9 +69,17 @@ export class ProfileComponent implements OnInit {
         this.loadProfile(this.profileId);
       }
     })
-    // this.http.post('/api/update-profile', formData).subscribe(response => {
-    //   console.log(response);
-    // });
   }
 
+  gotoRoom(id){
+    this.router.navigate([`/topics/all/${id}`]);
+  }
+
+  deleteRoom(room){
+
+  }
+
+  editRoom(room){
+
+  }
 }
