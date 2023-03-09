@@ -9,6 +9,12 @@
           <div class="post-description">
             <p>{{ room?.description }}</p>
           </div>
+          <div style="padding: 15px;">
+            <span style="font-weight: bold">Host: &nbsp; </span> <img class="comment-avatar"
+              [src]="room?.host?.image_url">
+            <span role="button" style="color:cornflowerblue"
+              class="comment-author" (click)="gotoProfile(room?.host?.id)">{{room?.host?.first_name + ' ' +  room?.host?.last_name}}</span>
+          </div>
           <div class="post-footer">
             <!-- <div class="post-likes">20 likes</div> -->
             <div class="post-comment-count">{{room?.comments.count}} comments</div>

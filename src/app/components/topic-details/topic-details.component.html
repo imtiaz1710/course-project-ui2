@@ -15,7 +15,7 @@
 <div class="d-flex">
   <div class="container">
     <button *ngIf="!!id" class="add-post-btn" (click)="openCreatePostModal()">Create Post</button>
-  
+
     <div>
       <div class="row">
         <div *ngFor="let post of posts" class="col-10">
@@ -23,13 +23,19 @@
             <div class="d-flex justify-content-end">
               <button role="button" (click)="enterRoom(post?.id)" class="btn btn-secondary">Enter Room</button>
             </div>
-  
+
             <div class="post-header">
               <div class="post-title">{{ post?.name }}</div>
               <!-- <div class="post-date">March 1, 2023</div> -->
             </div>
             <div class="post-description">
               <p>{{ post?.description }}</p>
+            </div>
+            <div style="padding: 15px;">
+              <span style="font-weight: bold">Host: &nbsp; </span> <img class="comment-avatar"
+                [src]="post?.host?.image_url">
+              <span role="button" style="color:cornflowerblue"
+                class="comment-author" (click)="gotoProfile(post?.host?.id)">{{post?.host?.first_name + ' ' +  post?.host?.last_name}}</span>
             </div>
             <div class="post-footer">
               <!-- <div class="post-likes">20 likes</div> -->
@@ -44,12 +50,14 @@
               <div *ngIf="post.showComment">
                 <!-- <pre>{{post | json}}</pre> -->
                 <div *ngFor="let comment of post?.comments" class="comment">
-                  <div >
+                  <div>
                     <img class="comment-avatar" [src]="comment?.comment_owner?.image_url">
                   </div>
                   <div class="comment-content">
                     <div class="comment-header">
-                      <div (click)="gotoProfile(comment?.comment_owner?.id)" class="comment-author" role="button">{{comment?.comment_owner.first_name + ' ' + comment?.comment_owner?.last_name}}</div>
+                      <div (click)="gotoProfile(comment?.comment_owner?.id)" class="comment-author" role="button">
+                        {{comment?.comment_owner.first_name + ' ' + comment?.comment_owner?.last_name}}
+                      </div>
                       <div class="comment-date">{{comment?.created | date:'d, MMMM, yyyy'}}</div>
                     </div>
                     <div class="comment-text">
