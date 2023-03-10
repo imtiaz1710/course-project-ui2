@@ -17,7 +17,6 @@ export class SidebarComponent implements OnInit  {
   ngOnInit(): void {
     this.currentTopicService.currentTopic$.subscribe({
       next: topic => {
-        debugger
         this.selectedTopic = topic;
       }
     })

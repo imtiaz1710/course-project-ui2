@@ -57,7 +57,6 @@ export class TopbarComponent implements OnInit {
   };
 
   search(){
-    debugger
     this.commonService.allRoomSearchText$.next(this.searchText);
   }
 }

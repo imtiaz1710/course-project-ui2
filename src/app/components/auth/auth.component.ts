@@ -68,7 +68,6 @@ export class AuthComponent implements OnInit {
         }else{
           this.isLoading = false;
           this.router.navigate(['/']);
-          this.authService.isLogIn$.next(true);
         }
       },
       errorMessage => {
