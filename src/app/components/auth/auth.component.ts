@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/']);
       },
       errorMessage => {
-        this.error = errorMessage;
+        this.error = errorMessage?.error?.non_field_errors.toString();
         this.isLoading = false;
       }
     );
