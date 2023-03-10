@@ -31,8 +31,13 @@ export class AuthComponent implements OnInit {
     const password = this.loginForm.value.password;
     this.authService.login(email, password).subscribe(
       resData => {
-        this.isLoading = false;
-        this.router.navigate(['/']);
+        if(!!resData?.error){
+
+        }
+        else{
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        }
       },
       errorMessage => {
         this.error = errorMessage?.error?.non_field_errors.toString();
@@ -58,8 +63,13 @@ export class AuthComponent implements OnInit {
 
     this.authService.register(email,first_name, last_name, password, confirmPassword).subscribe(
       resData => {
-        this.isLoading = false;
-        this.router.navigate(['/']);
+        if(!!resData?.errors){
+          this.error = 'Please input valid data'
+        }else{
+          this.isLoading = false;
+          this.router.navigate(['/']);
+          this.authService.isLogIn$.next(true);
+        }
       },
       errorMessage => {
         this.error = [...errorMessage?.error?.password, ...errorMessage?.error?.email].toString();

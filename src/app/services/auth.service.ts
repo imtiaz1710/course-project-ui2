@@ -30,7 +30,7 @@ export class AuthService {
   register(email: string, first_name: string, last_name: string, password: string, password2): Observable<any> {
     const url = `${this.baseUrl}/register/`;
     const body = { email, first_name, last_name, password, password2 };
-    return this.http.post(url, body).pipe(tap(res => this.isLogIn$.next(true)));
+    return this.http.post(url, body);
   }
 
   logout(): void {
